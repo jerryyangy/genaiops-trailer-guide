@@ -37,10 +37,3 @@ The **`mslearn-genaiops`** hands-on guide covers end-to-end GenAIOps patterns fo
 * **Prompt as Code:** Version-controlled prompts integrated directly into development workflows.
 * **Quality Gates:** PR automated evaluations prevent regression in production.
 * **Observability:** Full telemetry across token usage, latencies, and agent responses.
-
-# 4. Provision Azure resources using Azure Developer CLI
-azd up
-# Select Environment Name (e.g., dev-trail-guide), Subscription, and Region (e.g., swedencentral)
-
-# 5. Export environment variables to .env
-azd env get-values > .env
