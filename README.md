@@ -1,53 +1,42 @@
-# GenAI Operations (GenAIOps) Solution Summary & Hands-On Guide
+# GenAI Operations (GenAIOps) Summary
 
-> **Source Repository:** [Microsoft Learning: mslearn-genaiops](https://microsoftlearning.github.io/mslearn-genaiops/)
-
----
-
-## 📌 Executive Summary
-
-The **`mslearn-genaiops`** repository provides hands-on exercises for building, deploying, evaluating, monitoring, and optimizing Generative AI agents using **Microsoft Foundry** and **Azure AI Services**.
-
-It establishes an end-to-end **GenAIOps framework**—applying classical DevOps and MLOps practices (version control, automated evaluation, telemetry tracing, and CI/CD) specifically to Generative AI workloads.
+## Overview
+The **`mslearn-genaiops`** hands-on guide covers end-to-end GenAIOps patterns for building, versioning, evaluating, monitoring, and optimizing generative AI agents using **Microsoft Foundry** and **Azure AI Services**.
 
 ---
 
-## 🏗️ Architecture & Key Components
-
-| Component | Role in GenAIOps |
-| :--- | :--- |
-| **Microsoft Foundry (AI Services Hub/Project)** | Core workspace for managing models, prompts, agents, and cloud evaluators. |
-| **Azure Developer CLI (`azd`)** | Infrastructure as Code (IaC) deployment via Bicep templates. |
-| **Git / GitHub Actions** | Versioning prompts/agents and triggering automated evaluation pipelines. |
-| **Application Insights & Log Analytics** | Runtime monitoring, token usage tracking, and distributed tracing. |
-| **Python SDK** | Programmatic agent instantiation, prompt execution, and cloud evaluations. |
-
----
-
-## 🛠️ Step-by-Step Lab Execution & Code Guide
+## Key Lifecycle Stages & Tools
 
 ### 1. Environment & Infrastructure Setup
+* **Tools:** Azure Developer CLI (`azd`), Azure CLI (`az`), Bicep, Git.
+* **Key Steps:** 
+  * Provision Azure AI resources programmatically via `azd up`.
+  * Export environment configurations (`.env`) for local/SDK development.
 
-#### Prerequisites
-* Visual Studio Code
-* Azure Subscription with Microsoft Foundry access
-* Python 3.9+
-* Azure CLI (`az`) and Azure Developer CLI (`azd`)
+### 2. Prompt Management & Agent Versioning
+* **Tools:** Python SDK (`azure.ai.projects`), Git.
+* **Key Practice:** Treating prompts as code (version-controlled text files) rather than hardcoded strings, tagging releases in Git (`v1`, `v2`, `v3`) along with programmatic agent updates.
 
-#### Execution Steps
+### 3. Prompt Optimization & Automated Evaluation
+* **Tools:** Cloud Evaluators, GitHub Actions.
+* **Key Practice:** 
+  * Systematic local testing against ground-truth datasets.
+  * Automated CI/CD evaluation pipelines (`evaluate-agent.yml`) triggered on Pull Requests to score metrics like groundedness, coherence, and safety.
 
-```bash
-# 1. Clone the repository template
-git clone [https://github.com/](https://github.com/)<your-username>/mslearn-genaiops.git
-cd mslearn-genaiops
+### 4. Production Monitoring & Tracing
+* **Tools:** Application Insights, Log Analytics.
+* **Key Practice:** Implementing distributed tracing to observe latency, token consumption, error rates, and side-by-side performance comparisons across agent versions.
 
-# 2. Authenticate with Azure CLI & Azure Developer CLI
-azd auth login
-az login
+### 5. Advanced Optimization (Fine-Tuning)
+* **Techniques:** Supervised Fine-Tuning (SFT), Direct Preference Optimization (DPO), and Reinforcement Fine-Tuning (RFT) when prompt engineering hits performance limits.
 
-# 3. Configure Git user credentials
-git config --global user.name "Your Name"
-git config --global user.email "your-email@example.com"
+---
+
+## Core Takeaways
+* **Infrastructure as Code:** Fast, reproducible environment setup via Bicep/`azd`.
+* **Prompt as Code:** Version-controlled prompts integrated directly into development workflows.
+* **Quality Gates:** PR automated evaluations prevent regression in production.
+* **Observability:** Full telemetry across token usage, latencies, and agent responses.
 
 # 4. Provision Azure resources using Azure Developer CLI
 azd up
